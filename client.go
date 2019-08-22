@@ -4,13 +4,13 @@ import (
 	"github.com/gorilla/websocket"
 )
 
-// client represents a single user who is chatting.
+// clientはチャットを行っている一人のユーザを表す
 type client struct {
-	// socket is WebSocket fot this client
+	// socketはこのクライアントのためのWebSocket
 	socket *websocket.Conn
-	// send is the channel through which messages are sent
+	// sendはメッセージが送られるチャネル
 	send chan []byte
-	// room is the chatroom in which this client is participating.
+	// roomはこのクライアントが参加しているチャットルーム
 	room *room
 }
 

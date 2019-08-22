@@ -1,6 +1,6 @@
 package main
 
 type room struct {
-	// forward is a channel that holds messages for forwarding to other clients.
+	// forwardは他のクライアントに転送するためのメッセージを保持するチャネル
 	forward chan []byte
 }
