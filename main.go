@@ -24,10 +24,12 @@ func (t *templateHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	// root
+	r := newRoom()
 	http.Handle("/", &templateHandler{filename: "chat.html"})
-
-	// start web server
+	http.Handle("/room", r)
+	// チャットルームを開始する
+	go r.run()
+	// Webサーバを起動
 	if err := http.ListenAndServe(":8080", nil); err != nil {
 		log.Fatal("ListenAndserve:", err)
 	}
