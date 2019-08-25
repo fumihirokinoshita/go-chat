@@ -16,10 +16,10 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script>
             $(function() {
-                var socket = nil;
+                var socket = null;
                 var msgBox = $("#chatbox textarea");
                 var messages = $("#messages");
-                $("chatbox").submit(function() {
+                $("#chatbox").submit(function() {
                     if (!msgBox.val()) return false;
                     if (!socket) {
                         alert("Error : WebSocket接続が行われていません。");
