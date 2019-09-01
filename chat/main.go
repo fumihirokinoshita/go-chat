@@ -52,7 +52,7 @@ func main() {
 
 	var host = flag.String("host", ":8080", "アプリケーションのアドレス")
 	flag.Parse() // フラグを解釈する
-	r := newRoom(UseAuthAvatar)
+	r := newRoom(UseFileSystemAvatar)
 	r.tracer = trace.New(os.Stdout)
 	http.Handle("/chat", MustAuth(&templateHandler{filename: "chat.html"}))
 	http.Handle("/login", &templateHandler{filename: "login.html"})

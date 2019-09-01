@@ -14,6 +14,19 @@ type Avatar interface {
 	GetAvatarURL(c *client) (string, error)
 }
 
+type FileSystemAvatar struct{}
+
+var UseFileSystemAvatar FileSystemAvatar
+
+func (_ FileSystemAvatar) GetAvatarURL(c *client) (string, error) {
+	if userid, ok := c.userData["userid"]; ok {
+		if useridStr, ok := userid.(string); ok {
+			return "/avatars/" + useridStr + ".jpg", nil
+		}
+	}
+	return "", ErrNoAvatarURL
+}
+
 type AuthAvatar struct{}
 
 var UseAuthAvatar AuthAvatar
