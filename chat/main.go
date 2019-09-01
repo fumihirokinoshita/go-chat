@@ -19,7 +19,10 @@ import (
 )
 
 // 現在アクティブなAvatarの実装
-var avatar Avatar = UseFileSystemAvatar
+var avatars Avatar = TryAvatars{
+	UseFileSystemAvatar,
+	UseAuthAvatar,
+	UseGravatar}
 
 // templは１つのテンプレートを表す
 type templateHandler struct {
@@ -55,7 +58,7 @@ func main() {
 
 	var host = flag.String("host", ":8080", "アプリケーションのアドレス")
 	flag.Parse() // フラグを解釈する
-	r := newRoom(UseFileSystemAvatar)
+	r := newRoom()
 	r.tracer = trace.New(os.Stdout)
 	http.Handle("/chat", MustAuth(&templateHandler{filename: "chat.html"}))
 	http.Handle("/login", &templateHandler{filename: "login.html"})
@@ -81,6 +84,6 @@ func main() {
 	// Webサーバを起動
 	log.Println("Webサーバを開始します。ポート：", *host)
 	if err := http.ListenAndServe(*host, nil); err != nil {
-		log.Fatal("ListenAndserve:", err)
+		log.Fatal("ListenAndServe:", err)
 	}
 }
