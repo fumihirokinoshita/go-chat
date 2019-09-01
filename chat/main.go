@@ -38,7 +38,7 @@ func main() {
 	gomniauth.WithProviders(
 		facebook.New("クライアントID", "秘密鍵", "http://localhost:8080/auth/callback/facebook"),
 		github.New("クライアントID", "秘密鍵", "http://localhost:8080/auth/callback/github"),
-		google.New("クライアントID", "秘密鍵", "http://localhost:8080/auth/callback/google"),
+		google.New("462225854968-iprrepgp6ff08af4euqpr0htqcfihdkj.apps.googleusercontent.com", "lYoQBbPczT0x9QQqqK495tIG", "http://localhost:8080/auth/callback/google"),
 	)
 
 	var addr = flag.String("addr", ":8080", "アプリケーションのアドレス")
