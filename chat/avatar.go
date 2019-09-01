@@ -10,7 +10,7 @@ var ErrNoAvatarURL = errors.New("chat: アバターのURLを取得できませ�
 // Avatarはユーザのプロフィール画像を表す型
 type Avatar interface {
 	// GetAvatarURLは指定されたクライアントのアバターのURLを返す
-	// 問題がガッ生した場合はerrorを返す。特にURLを取得できなかった場合はErrNoAvatarURLを返す
+	// 問題が発生した場合はerrorを返す。特にURLを取得できなかった場合はErrNoAvatarURLを返す
 	getAvatarURL(c *client) (string, error)
 }
 
