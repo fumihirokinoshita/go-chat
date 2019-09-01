@@ -37,7 +37,7 @@ func main() {
 	gomniauth.SetSecurityKey("TODO:セキュリティキー")
 	gomniauth.WithProviders(
 		facebook.New("2369387316463639", "6a942a6882208ffada387542e4d1033d", "http://localhost:8080/auth/callback/facebook"),
-		github.New("クライアントID", "秘密鍵", "http://localhost:8080/auth/callback/github"),
+		github.New("2bfb18da1ac0a5bc59bb", "a0a02644be5916ca03635dd05469778ad1658b97", "http://localhost:8080/auth/callback/github"),
 		google.New("462225854968-iprrepgp6ff08af4euqpr0htqcfihdkj.apps.googleusercontent.com", "lYoQBbPczT0x9QQqqK495tIG", "http://localhost:8080/auth/callback/google"),
 	)
 
