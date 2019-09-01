@@ -50,7 +50,7 @@ func main() {
 		google.New("462225854968-iprrepgp6ff08af4euqpr0htqcfihdkj.apps.googleusercontent.com", "lYoQBbPczT0x9QQqqK495tIG", "http://localhost:8080/auth/callback/google"),
 	)
 
-	var addr = flag.String("addr", ":8080", "アプリケーションのアドレス")
+	var host = flag.String("host", ":8080", "アプリケーションのアドレス")
 	flag.Parse() // フラグを解釈する
 	r := newRoom(UseAuthAvatar)
 	r.tracer = trace.New(os.Stdout)
@@ -69,12 +69,13 @@ func main() {
 		w.WriteHeader(http.StatusTemporaryRedirect)
 	})
 	http.Handle("/upload", &templateHandler{filename: "upload.html"})
+	http.HandleFunc("/uploader", uploaderHandler)
 
 	// チャットルームを開始する
 	go r.run()
 	// Webサーバを起動
-	log.Println("Webサーバを開始します。ポート：", *addr)
-	if err := http.ListenAndServe(*addr, nil); err != nil {
+	log.Println("Webサーバを開始します。ポート：", *host)
+	if err := http.ListenAndServe(*host, nil); err != nil {
 		log.Fatal("ListenAndserve:", err)
 	}
 }
