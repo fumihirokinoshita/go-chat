@@ -64,11 +64,11 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			log.Fatalln("承認プロバイダーの取得に失敗しました：", provider, "-", err)
 		}
-		loginUrl, err := provider.GetBeginAuthURL(nil, nil)
+		loginURL, err := provider.GetBeginAuthURL(nil, nil)
 		if err != nil {
 			log.Fatalln("GetBeginAuthURLの呼び出し中に失敗しました：", provider, "-", err)
 		}
-		w.Header().Set("Location", loginUrl)
+		w.Header().Set("Location", loginURL)
 		w.WriteHeader(http.StatusTemporaryRedirect)
 
 	case "callback":
@@ -89,7 +89,7 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 
 		chatUser := &chatUser{User: user}
 		m := md5.New()
-		io.WriteString(m, strings.ToLower(user.Name()))
+		io.WriteString(m, strings.ToLower(user.Email()))
 		chatUser.uniqueID = fmt.Sprintf("%x", m.Sum(nil))
 		avatarURL, err := avatars.GetAvatarURL(chatUser)
 		if err != nil {
