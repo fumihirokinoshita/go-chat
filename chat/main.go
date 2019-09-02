@@ -46,7 +46,11 @@ func (t *templateHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	t.templ.Execute(w, data)
 }
 
+var host = flag.String("host", ":8080", "アプリケーションのアドレス")
+
 func main() {
+
+	flag.Parse() // フラグを解釈する
 
 	// Gomniauthのセットアップ
 	gomniauth.SetSecurityKey("xv1vjk3xgoz8ic90zgnryxdz")
@@ -56,8 +60,6 @@ func main() {
 		google.New("462225854968-iprrepgp6ff08af4euqpr0htqcfihdkj.apps.googleusercontent.com", "lYoQBbPczT0x9QQqqK495tIG", "http://localhost:8080/auth/callback/google"),
 	)
 
-	var host = flag.String("host", ":8080", "アプリケーションのアドレス")
-	flag.Parse() // フラグを解釈する
 	r := newRoom()
 	r.tracer = trace.New(os.Stdout)
 	http.Handle("/chat", MustAuth(&templateHandler{filename: "chat.html"}))
@@ -71,7 +73,7 @@ func main() {
 			Path:   "/",
 			MaxAge: -1,
 		})
-		w.Header()["location"] = []string{"/chat"}
+		w.Header().Set("Location", "/chat")
 		w.WriteHeader(http.StatusTemporaryRedirect)
 	})
 	http.Handle("/upload", &templateHandler{filename: "upload.html"})
