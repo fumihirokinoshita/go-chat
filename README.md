@@ -16,16 +16,16 @@ $ echo 'export PATH=$PATH:$(go env GOPATH)/bin' >> ~/.bash_profile
 $ source ~/.bash_profile
 ```
 
-clone
-```
-$ cd $HOME/go
-$ git clone github.com/fumihirokinoshita/go-chat
-```
-
 ライブラリのインストール
 ```
 $ go get github.com/gorilla/websocket
 $ go get github.com/stretchr/gomniauth/...
+```
+
+clone
+```
+$ cd $HOME/go/src
+$ git clone github.com/fumihirokinoshita/go-chat
 ```
 
 ## 実行
@@ -37,7 +37,8 @@ $ ./chat -host=:8080
 
 ブラウザから
 ```
-http://localhost:8080
+http://localhost:8080/login
 ```
 にアクセス
-複数タブからログインするとチャット開始
+
+認証を行った後、複数参加者がいればチャットが開始される
