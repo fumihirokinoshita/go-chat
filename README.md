@@ -42,3 +42,8 @@ http://localhost:8080/login
 にアクセス
 
 認証を行った後、複数参加者がいればチャットが開始される
+
+※ 承認の際、以下のアカウントのどれかを利用する
+- google
+- facebook
+- github
