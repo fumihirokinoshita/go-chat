@@ -31,6 +31,7 @@ $ git clone github.com/fumihirokinoshita/go-chat
 ## 実行
 ```
 $ cd chat
+$ mkdir avatars
 $ go build -o chat
 $ ./chat -host=:8080
 ```
