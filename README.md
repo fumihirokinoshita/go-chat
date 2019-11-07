@@ -28,7 +28,7 @@ $ cd $HOME/go/src
 $ git clone github.com/fumihirokinoshita/go-chat
 ```
 
-## 実行
+## 動作確認
 ```
 $ cd chat
 $ mkdir avatars
